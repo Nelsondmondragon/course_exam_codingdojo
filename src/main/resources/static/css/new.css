@@ -1,0 +1,45 @@
+body {
+  padding: 4rem;
+  /* color: aqua; */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container__form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.form__field {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  /* width: 15rem; */
+  resize: none;
+}
+
+.form__submit {
+  align-self: flex-end;
+}
+
+.form__button {
+  margin-top: 1rem;
+  align-self: flex-end;
+}
+
+.error {
+  color: red;
+}

@@ -1,0 +1,43 @@
+body {
+  padding: 4rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.container__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.container__table thead tr {
+  background: gray;
+}
+
+.container__table tbody tr:nth-child(2n + 1) {
+  background: rgb(189, 178, 178);
+}
+
+td {
+  border: 1px solid black;
+}
+
+.container__create {
+  margin-top: 2rem;
+  align-self: end;
+}
+
+.button{
+  width: 8rem;
+}

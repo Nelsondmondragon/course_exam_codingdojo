@@ -1,0 +1,22 @@
+.button {
+  width: 4rem;
+  border-radius: 0.5rem;
+  color: white;
+  background: gray;
+}
+
+.button__completed {
+  width: 5rem;
+  border-radius: 0.5rem;
+  color: white;
+  background: rgb(44, 98, 118);
+}
+.ninja {
+  align-self: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ninja a {
+  margin-right: 2px;
+}

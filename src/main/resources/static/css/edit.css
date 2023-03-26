@@ -1,0 +1,43 @@
+body {
+  padding: 4rem;
+  background: rgb(220, 210, 210);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container__form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.form__field {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+
+.form__button {
+  margin-top: 1rem;
+  align-self: flex-end;
+}
+
+.error {
+  color: red;
+}
+
+.form__submit{
+  align-self: self-end;
+}
