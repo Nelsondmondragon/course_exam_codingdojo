@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,8 +17,7 @@ import java.util.Date;
 @Table(name = "users_has_courses")
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
-public class UsersCourses {
+public class CourseHasUsers {
 
 
     @Id
@@ -34,10 +32,18 @@ public class UsersCourses {
     @Column(name = "id_course")
     private Long idCourse;
 
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user", nullable = false, insertable = false, updatable = false)
+    private User user;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_course", nullable = false, insertable = false, updatable = false)
+    private Course course;
 
     @PrePersist
     protected void onCreate() {

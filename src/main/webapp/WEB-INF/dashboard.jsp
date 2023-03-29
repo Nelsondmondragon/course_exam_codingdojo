@@ -25,7 +25,7 @@
 
                         </div>
                         <div class="ninja">
-                            <a href="/courses?order=asc">low ign Up</a>
+                            <a href="/courses">low ign Up</a>
                             <a href="/courses?order=desc">High sign Up</a>
                         </div>
                         <table class="container__table">

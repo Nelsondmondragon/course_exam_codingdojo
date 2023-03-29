@@ -50,14 +50,16 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
-//    @OneToMany(mappedBy = "userInstructor", fetch = FetchType.LAZY)
-//    private List<Course> courses;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_has_courses",
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_course"))
     private List<Course> coursesJoined = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<CourseHasUsers> courseHasUsers;
 
 
     @PrePersist

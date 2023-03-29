@@ -2,11 +2,12 @@ package com.codingdojo.controller;
 
 
 import com.codingdojo.model.Course;
-import com.codingdojo.model.User;
-import com.codingdojo.repository.UserJoinedCourseRepository;
+import com.codingdojo.model.CourseHasUsers;
+import com.codingdojo.service.CourseHasUserService;
 import com.codingdojo.service.CourseService;
 import com.codingdojo.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,9 @@ public class CourseController {
     public final CourseService courseService;
     public final UserService userService;
 
-    public final UserJoinedCourseRepository userJoinedCourseRepository;
+    public final CourseHasUserService service;
+
+    public final CourseHasUserService courseHasUserService;
 
     @GetMapping(value = {"/courses"})
     public String dashboard(@RequestParam(value = "order", required = false) String order, Model model, HttpSession session) {
@@ -36,8 +39,6 @@ public class CourseController {
             model.addAttribute("courses", this.courseService.findAll());
         } else if (order.equals("desc")) {
             model.addAttribute("courses", this.courseService.findAllDesc());
-        } else {
-            model.addAttribute("courses", this.courseService.findAllAsc());
         }
 
         return "dashboard.jsp";
@@ -61,7 +62,7 @@ public class CourseController {
         if (idUser == null) {
             return "redirect:/";
         }
-        this.courseService.joinProject(id, idUser);
+        this.courseService.joinCourse(id, idUser);
         return "redirect:/courses";
     }
 
@@ -79,17 +80,25 @@ public class CourseController {
         }
         return "redirect:/courses";
     }
-////
 
     @GetMapping("/courses/{id}")
-    public String viewCourse(@PathVariable Long id, Model model, HttpSession session) {
+    public String viewCourse(@PathVariable Long id, @RequestParam(value = "order", required = false) String order, Model model, HttpSession session) {
         Long idUser = (Long) session.getAttribute("userLoginId");
         if (idUser == null) {
             return "redirect:/";
         }
+
         Course course = this.courseService.findById(id);
         model.addAttribute("course", course);
-        model.addAttribute("dateRegister", userJoinedCourseRepository);
+
+        if (order == null) {
+            model.addAttribute("courseHasUsers",
+                    course.getCourseHasUsers());
+        } else if (order.equals("desc")) {
+            model.addAttribute("courseHasUsers",
+                    this.courseHasUserService.findAllByCourseIdOrderByCreatedAtDesc(course.getId()));
+
+        }
 
         return "view.jsp";
     }
@@ -143,7 +152,7 @@ public class CourseController {
             return "redirect:/";
         }
         System.out.println("ooo");
-        this.courseService.deleteUser(userId,id);
+        this.courseService.deleteUser(userId, id);
         return "redirect:/courses";
     }
 }

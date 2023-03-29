@@ -28,15 +28,13 @@
 
 							<div class="form__field">
 								<label>Sign ups</label>
-								<input disabled type=" text" disbaled value="${course.getUsersJoined().size()}"></input>
+								<input disabled type=" text" value="${course.getUsersJoined().size()}"></input>
 							</div>
 
-
-
-
 							<div class="ninja">
-								<a href="">Sign Up Data ASC</a>
-								<a href="">Sign Up Data DESC</a>
+								<a href="/courses/${course.getId()}">
+									Sign Up Data ASC</a>
+								<a href="/courses/${course.getId()}?order=desc">Sign Up Data DESC</a>
 							</div>
 
 
@@ -49,18 +47,17 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${course.getUsersJoined()}" var="student">
+									<c:forEach items="${courseHasUsers}" var="courseHasUser">
 										<tr>
 											<th>
-												<c:out value="${student.getName()}"></c:out>
+												<c:out value="${courseHasUser.getUser().getName()}"></c:out>
 											</th>
 											<th>
-												<c:out
-													value="${dateRegister.findAllByIdUserAndIdCourse(student.getId(),course.getId()).getCreatedAt()}">
+												<c:out value="${courseHasUser.getCreatedAt()}">
 												</c:out>
 											</th>
 											<th>
-												<c:if test="${userLoginId==student.getId()}">
+												<c:if test="${userLoginId==courseHasUser.getIdUser()}">
 													<a href="/courses/deleteuser/${course.getId()}">Remove</a>
 												</c:if>
 											</th>

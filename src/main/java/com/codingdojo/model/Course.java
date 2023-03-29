@@ -48,9 +48,13 @@ public class Course {
 
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_has_courses", joinColumns = @JoinColumn(name = "id_course"), inverseJoinColumns = @JoinColumn(name = "id_user"))
+    @JoinTable(name = "users_has_courses", joinColumns = @JoinColumn(name = "id_course"),
+            inverseJoinColumns = @JoinColumn(name = "id_user"))
     private List<User> usersJoined = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private List<CourseHasUsers> courseHasUsers;
 
     @PrePersist
     protected void onCreate() {
