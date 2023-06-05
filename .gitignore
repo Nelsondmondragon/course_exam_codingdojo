@@ -1,5 +1,8 @@
 HELP.md
 target/
+/db
+.mvn/
+git-filter-repo.py
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
