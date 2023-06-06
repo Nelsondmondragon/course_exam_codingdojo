@@ -10,7 +10,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t java_app:v1.1 .
-      - docker tag java_app:latest 155886964569.dkr.ecr.us-east-1.amazonaws.com/java_app:v1.1
+      - docker tag java_app:v1.1 155886964569.dkr.ecr.us-east-1.amazonaws.com/java_app:v1.1
   post_build:
     commands:
       - echo Build completed on `date`
