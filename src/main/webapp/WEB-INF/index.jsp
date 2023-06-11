@@ -19,7 +19,7 @@
                         <div class="container__register__login">
                             <form:form class="form__register" action="/register" modelAttribute="newUser">
                                 <input type="hidden" name="_method" value="post">
-                                <h2 class="form__title">Register Exam</h2>
+                                <h2 class="form__title">Register Exam for Change</h2>
 
                                 <form:errors class="error" path="name" />
                                 <div class="register__field">
